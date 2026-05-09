@@ -106,3 +106,18 @@ export interface Pulse {
   insights: string[];
   mood: 'Productive' | 'Steady' | 'Fixing' | 'Refactoring';
 }
+
+// ── Admin ─────────────────────────────────────────────────────────────────────
+export async function getAdminUsers(username?: string, password?: string): Promise<{ users: any[] }> {
+  const res = await fetch(`${API_BASE}/api/admin/users`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, password }),
+  });
+  
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.error || 'Failed to fetch admin data');
+  }
+  return res.json();
+}
