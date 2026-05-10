@@ -5,9 +5,15 @@ async function apiFetch<T = unknown>(
   path: string,
   options: RequestInit = {}
 ): Promise<T> {
+  const token = typeof window !== 'undefined' ? localStorage.getItem('devpulse_token') : null;
+
   const res = await fetch(`${API_BASE}${path}`, {
     credentials: 'include', // sends httpOnly JWT cookie
-    headers: { 'Content-Type': 'application/json', ...options.headers },
+    headers: { 
+      'Content-Type': 'application/json', 
+      ...(token ? { 'Authorization': `Bearer ${token}` } : {}),
+      ...options.headers 
+    },
     ...options,
   });
 
@@ -21,7 +27,10 @@ async function apiFetch<T = unknown>(
 
 // ── Auth ──────────────────────────────────────────────────────────────────────
 export const getMe = () => apiFetch<{ user: User }>('/auth/me');
-export const logout = () => apiFetch('/auth/logout', { method: 'POST' });
+export const logout = async () => {
+  if (typeof window !== 'undefined') localStorage.removeItem('devpulse_token');
+  return apiFetch('/auth/logout', { method: 'POST' });
+};
 export const loginUrl = () => `${API_BASE}/auth/github`;
 
 // ── Repos ─────────────────────────────────────────────────────────────────────

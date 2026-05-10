@@ -18,13 +18,26 @@ export default function DashboardPage() {
   const router = useRouter();
 
   useEffect(() => {
+    // Fail-safe: capture token from URL if it exists
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlToken = urlParams.get('token');
+    if (urlToken) {
+      localStorage.setItem('devpulse_token', urlToken);
+      // Clean URL
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
     Promise.all([getMe(), getRepos()])
       .then(([{ user }, { repos }]) => {
         setUser(user);
         setRepos(repos);
         setFiltered(repos);
       })
-      .catch(() => router.push('/'))
+      .catch(() => {
+        // If fetch fails, maybe the token is invalid, clear it
+        localStorage.removeItem('devpulse_token');
+        router.push('/');
+      })
       .finally(() => setLoading(false));
   }, [router]);
 
