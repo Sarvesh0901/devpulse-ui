@@ -20,19 +20,32 @@ export default function PulseCard({ pulse }: Props) {
   const hasCommits = Object.values(pulse.categories).some(arr => arr.length > 0);
 
   return (
-    <div className="glass" style={{ padding: '1.5rem', border: `1px solid ${mood.border}44` }}>
+    <div className="glass card-ai" style={{ padding: '2rem' }}>
       {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-        <h3 style={{ fontSize: '1rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          🤖 AI Daily Pulse
-        </h3>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.75rem', flexWrap: 'wrap', gap: '1rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <div style={{ 
+            width: 40, height: 40, borderRadius: 10, 
+            background: 'linear-gradient(135deg, #d946ef, #8b5cf6)', 
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            boxShadow: '0 0 15px rgba(217, 70, 239, 0.4)'
+          }}>
+            <span style={{ fontSize: '1.2rem' }}>✨</span>
+          </div>
+          <div>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 800, letterSpacing: '-0.02em' }}>Gemini AI Insights</h3>
+            <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>Recent Code Commits Analysed</p>
+          </div>
+        </div>
+        
         <span style={{
-          display: 'inline-flex', alignItems: 'center', gap: '0.35rem',
-          background: mood.bg, border: `1px solid ${mood.border}55`,
-          borderRadius: 100, padding: '0.25rem 0.8rem', fontSize: '0.75rem', fontWeight: 600,
+          display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+          background: 'rgba(139, 92, 246, 0.1)', border: `1px solid rgba(139, 92, 246, 0.3)`,
+          borderRadius: 100, padding: '0.35rem 1rem', fontSize: '0.75rem', fontWeight: 700,
+          color: 'var(--accent-1)', textTransform: 'uppercase', letterSpacing: '0.05em'
         }}>
-          <span style={{ width: 7, height: 7, borderRadius: '50%', background: mood.dot, display: 'inline-block' }} />
-          {pulse.mood}
+          <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--accent-1)', display: 'inline-block', boxShadow: '0 0 8px var(--accent-1)' }} />
+          Gemini AI
         </span>
       </div>
 

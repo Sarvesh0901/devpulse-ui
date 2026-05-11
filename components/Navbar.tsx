@@ -28,15 +28,18 @@ export default function Navbar() {
       position: 'sticky',
       top: 0,
       zIndex: 50,
-      background: 'rgba(13,17,23,0.85)',
-      backdropFilter: 'blur(20px)',
+      background: 'rgba(6,8,10,0.85)',
+      backdropFilter: 'blur(25px)',
       borderBottom: '1px solid var(--border)',
     }}>
-      <div className="container-app" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px' }}>
+      <div className="container-app" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '72px' }}>
         {/* Logo */}
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}>
-          <span style={{ fontSize: '1.5rem' }}>⚡</span>
-          <span style={{ fontWeight: 800, fontSize: '1.2rem' }} className="gradient-text">DevPulse</span>
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.png" alt="DevPulse AI" style={{ width: 32, height: 32, filter: 'drop-shadow(0 0 8px var(--accent-1))' }} />
+          <span style={{ fontWeight: 900, fontSize: '1.4rem', letterSpacing: '-0.02em', textTransform: 'uppercase' }} className="gradient-text">
+            DevPulse <span style={{ opacity: 0.8, fontWeight: 400 }}>AI</span>
+          </span>
         </Link>
 
         {/* Right side */}

@@ -22,22 +22,27 @@ export default function HealthScoreRing({ health }: Props) {
   ];
 
   return (
-    <div className="glass" style={{ padding: '1.5rem' }}>
-      <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '1rem' }}>❤️ Repository Health</h3>
+    <div className="glass" style={{ padding: '2rem' }}>
+      <h3 style={{ fontSize: '1.2rem', fontWeight: 800, marginBottom: '1.5rem', letterSpacing: '-0.02em' }}>Repository Health Score</h3>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
         {/* Ring */}
-        <div style={{ position: 'relative', width: 140, height: 140, flexShrink: 0 }}>
+        <div style={{ position: 'relative', width: 220, height: 220 }}>
           <ResponsiveContainer width="100%" height="100%">
-            <RadialBarChart cx="50%" cy="50%" innerRadius="70%" outerRadius="90%" startAngle={90} endAngle={-270} data={data}>
-              <RadialBar dataKey="value" cornerRadius={8} background={{ fill: 'rgba(99,102,241,0.1)' }} />
+            <RadialBarChart cx="50%" cy="50%" innerRadius="85%" outerRadius="100%" startAngle={90} endAngle={-270} data={data}>
+              <RadialBar dataKey="value" cornerRadius={20} background={{ fill: 'rgba(255,255,255,0.03)' }} />
             </RadialBarChart>
           </ResponsiveContainer>
           {/* Centre label */}
           <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-            <span style={{ fontSize: '1.8rem', fontWeight: 900, color }}>{score}</span>
-            <span style={{ fontSize: '0.9rem', fontWeight: 700, color }}>{grade}</span>
+            <span style={{ fontSize: '4.2rem', fontWeight: 900, color: '#fff', letterSpacing: '-0.04em', filter: `drop-shadow(0 0 20px ${color}44)` }}>{score}%</span>
           </div>
+        </div>
+
+        <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+            <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+                Score: <span style={{ color }}>{score}/100</span> | Overall: <span style={{ color, fontWeight: 700 }}>{grade}</span>
+            </p>
         </div>
 
         {/* Breakdown */}

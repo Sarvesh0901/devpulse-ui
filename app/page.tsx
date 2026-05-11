@@ -43,37 +43,38 @@ export default function LandingPage() {
 
       <main>
         {/* ── Hero ─────────────────────────────────────────────────────── */}
-        <section style={{ textAlign: 'center', padding: '7rem 1.5rem 5rem' }}>
+        <section style={{ textAlign: 'center', padding: '8rem 1.5rem 6rem', position: 'relative' }}>
           <div className="container-app">
             {/* Badge */}
             <div style={{
-              display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
-              background: 'rgba(99,102,241,0.12)', border: '1px solid var(--border)',
-              borderRadius: 100, padding: '0.3rem 1rem', fontSize: '0.8rem',
-              color: 'var(--accent-2)', marginBottom: '2rem',
+              display: 'inline-flex', alignItems: 'center', gap: '0.6rem',
+              background: 'rgba(139,92,246,0.1)', border: '1px solid rgba(139,92,246,0.3)',
+              borderRadius: 100, padding: '0.4rem 1.2rem', fontSize: '0.85rem',
+              color: 'var(--accent-1)', marginBottom: '2.5rem',
+              fontWeight: 600, boxShadow: '0 0 20px rgba(139,92,246,0.1)'
             }}>
-              <span>✨</span> Powered by Gemini AI + GitHub API
+              <span style={{ filter: 'drop-shadow(0 0 4px var(--accent-1))' }}>✨</span> Powered by Gemini AI + GitHub API
             </div>
 
-            <h1 style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 900, lineHeight: 1.1, marginBottom: '1.5rem' }}>
-              Your GitHub repos,{' '}
-              <span className="gradient-text">intelligently analysed</span>
+            <h1 style={{ fontSize: 'clamp(2.8rem, 7vw, 5.2rem)', fontWeight: 900, lineHeight: 1.05, marginBottom: '1.8rem', letterSpacing: '-0.03em' }}>
+              Your GitHub repos,<br />
+              <span className="gradient-text">intelligently analysed.</span>
             </h1>
 
-            <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', maxWidth: 560, margin: '0 auto 3rem', lineHeight: 1.7 }}>
-              DevPulse gives you AI-powered commit summaries, repository health scores,
-              and beautiful analytics dashboards — all in a single premium interface.
+            <p style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', maxWidth: 620, margin: '0 auto 3.5rem', lineHeight: 1.6 }}>
+              DevPulse AI delivers real-time commit intelligence, repository health scoring,
+              and professional analytics in a stunning high-fidelity interface.
             </p>
 
-            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <a href={loginUrl()} className="btn-primary" id="hero-login-btn" style={{ fontSize: '1rem', padding: '0.85rem 2.2rem' }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <div style={{ display: 'flex', gap: '1.25rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <a href={loginUrl()} className="btn-primary" id="hero-login-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
                 </svg>
                 Connect GitHub Account
               </a>
-              <a href="#features" className="btn-secondary" style={{ fontSize: '1rem', padding: '0.85rem 2.2rem' }}>
-                Explore Features ↓
+              <a href="#features" className="btn-secondary">
+                Explore Tech Features
               </a>
             </div>
           </div>

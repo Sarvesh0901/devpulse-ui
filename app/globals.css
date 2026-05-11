@@ -5,24 +5,24 @@
 
 /* ── Design Tokens ───────────────────────────────────────────────────────── */
 :root {
-  --bg-base: #0d1117;
-  --bg-surface: rgba(22, 27, 34, 0.80);
-  --bg-card: rgba(30, 37, 48, 0.70);
-  --border: rgba(99, 102, 241, 0.18);
-  --border-hover: rgba(99, 102, 241, 0.45);
+  --bg-base: #06080a;
+  --bg-surface: #0a0d11;
+  --bg-card: rgba(13, 17, 23, 0.7);
+  --border: rgba(139, 92, 246, 0.15);
+  --border-hover: rgba(139, 92, 246, 0.4);
 
-  --accent-1: #6366f1;   /* indigo */
+  --accent-1: #8b5cf6;   /* violet */
   --accent-2: #06b6d4;   /* cyan */
-  --accent-3: #a855f7;   /* purple */
+  --accent-3: #d946ef;   /* fuchsia */
 
-  --text-primary: #e6edf3;
-  --text-secondary: #8b949e;
-  --text-muted: #484f58;
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+  --text-muted: #4b5563;
 
-  --glass-blur: blur(16px);
-  --radius: 14px;
-  --radius-sm: 8px;
-  --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.12);
+  --glass-blur: blur(20px);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow-glow: 0 0 50px rgba(139, 92, 246, 0.08);
 }
 
 /* ── Base ─────────────────────────────────────────────────────────────────── */
@@ -36,73 +36,126 @@ body {
   color: var(--text-primary);
   min-height: 100vh;
   line-height: 1.6;
-  /* Subtle radial gradient background */
+  /* Darker, richer background with subtle neon spots */
   background-image:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99,102,241,0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(6,182,212,0.06) 0%, transparent 50%);
+    radial-gradient(circle at 0% 0%, rgba(139, 92, 246, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 100% 0%, rgba(6, 182, 212, 0.05) 0%, transparent 35%),
+    radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0) 0%, var(--bg-base) 100%);
 }
 
-/* ── Glass card ──────────────────────────────────────────────────────────── */
+/* ── High-Fidelity Glass card ─────────────────────────────────────────────── */
 .glass {
   background: var(--bg-card);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  box-shadow: var(--shadow-glow), inset 0 1px 0 rgba(255,255,255,0.05);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: var(--shadow-glow);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.glass::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+}
+
 .glass:hover {
   border-color: var(--border-hover);
-  box-shadow: 0 0 60px rgba(99,102,241,0.18), inset 0 1px 0 rgba(255,255,255,0.07);
+  box-shadow: 0 0 70px rgba(139, 92, 246, 0.12);
+  transform: translateY(-2px);
+}
+
+/* ── Special Cards ───────────────────────────────────────────────────────── */
+.card-ai {
+  border: 1px solid rgba(217, 70, 239, 0.3);
+  background: linear-gradient(135deg, rgba(217, 70, 239, 0.03), rgba(139, 92, 246, 0.03));
+}
+.card-ai::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(217, 70, 239, 0.5), transparent, rgba(139, 92, 246, 0.5));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 /* ── Gradient text ───────────────────────────────────────────────────────── */
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 50%, var(--accent-3) 100%);
+  background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* ── Gradient button ─────────────────────────────────────────────────────── */
+/* ── Interactive Buttons ─────────────────────────────────────────────────── */
 .btn-primary {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.75rem;
-  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 2rem;
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
   border: none;
   border-radius: var(--radius-sm);
   color: #fff;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.95rem;
   cursor: pointer;
   text-decoration: none;
-  transition: opacity 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 20px rgba(99,102,241,0.35);
+  transition: all 0.25s ease;
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+  position: relative;
+  z-index: 1;
 }
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  filter: blur(15px);
+  opacity: 0.4;
+  z-index: -1;
+  transition: opacity 0.25s ease;
+}
+
 .btn-primary:hover {
-  opacity: 0.92;
-  transform: translateY(-1px);
-  box-shadow: 0 8px 30px rgba(99,102,241,0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(139, 92, 246, 0.45);
 }
-.btn-primary:active { transform: translateY(0); }
+
+.btn-primary:hover::after { opacity: 0.6; }
 
 .btn-secondary {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.65rem 1.4rem;
-  background: transparent;
-  border: 1px solid var(--border-hover);
+  gap: 0.6rem;
+  padding: 0.85rem 1.6rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-sm);
   color: var(--text-primary);
-  font-weight: 500;
-  font-size: 0.9rem;
+  font-weight: 600;
+  font-size: 0.95rem;
   cursor: pointer;
   text-decoration: none;
-  transition: background 0.2s ease, border-color 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 .btn-secondary:hover {
   background: rgba(99,102,241,0.08);
