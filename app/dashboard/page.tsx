@@ -56,22 +56,18 @@ export default function DashboardPage() {
   return (
     <>
       <Navbar />
-      <main className="container-app" style={{ padding: '2.5rem 1.5rem' }}>
-        {/* Header */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
-          {user && (
-            /* eslint-disable-next-line @next/next/no-img-element */
-            <img src={user.avatar_url} alt={user.login} style={{ width: 52, height: 52, borderRadius: '50%', border: '2px solid var(--accent-1)' }} />
-          )}
-          <div>
-            <h1 style={{ fontSize: '1.6rem', fontWeight: 800 }}>
-              {loading ? 'Loading…' : `Welcome back, ${user?.name || user?.login} 👋`}
-            </h1>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem' }}>
-              {repos.length} repositories · {totalStars} ⭐ · {totalForks} 🍴
-            </p>
+      <main className="container-app" style={{ padding: '3.5rem 1.5rem' }}>
+        {/* Dashboard Header (Match reference image) */}
+        <header style={{ marginBottom: '3rem' }}>
+          <h1 style={{ fontSize: '2.4rem', fontWeight: 800, color: '#fff', marginBottom: '0.5rem', letterSpacing: '-0.02em' }}>
+            Dashboard Overview
+          </h1>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--text-secondary)', fontSize: '1rem' }}>
+            <span>Welcome Back, {user?.name || user?.login || 'User'}</span>
+            <span style={{ opacity: 0.3 }}>|</span>
+            <span>Date at {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
           </div>
-        </div>
+        </header>
 
         {/* Stats row */}
         {!loading && (

@@ -34,44 +34,70 @@ export default function Navbar() {
     }}>
       <div className="container-app" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '72px' }}>
         {/* Logo */}
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none' }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="DevPulse AI" style={{ width: 32, height: 32, filter: 'drop-shadow(0 0 8px var(--accent-1))' }} />
-          <span style={{ fontWeight: 900, fontSize: '1.4rem', letterSpacing: '-0.02em', textTransform: 'uppercase' }} className="gradient-text">
-            DevPulse <span style={{ opacity: 0.8, fontWeight: 400 }}>AI</span>
-          </span>
-        </Link>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '2.5rem' }}>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', textDecoration: 'none' }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo.png" alt="DevPulse AI" style={{ width: 26, height: 26, filter: 'drop-shadow(0 0 6px var(--accent-1))' }} />
+            <span style={{ fontWeight: 800, fontSize: '1.25rem', letterSpacing: '0.02em', textTransform: 'uppercase', color: '#fff' }}>
+              DEVPULSE <span style={{ color: 'var(--accent-1)' }}>AI</span>
+            </span>
+          </Link>
 
-        {/* Right side */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          {loading ? (
-            <div className="skeleton" style={{ width: 32, height: 32, borderRadius: '50%' }} />
-          ) : user ? (
-            <>
-              <Link href="/dashboard" className="btn-secondary" style={{ padding: '0.45rem 1rem', fontSize: '0.85rem' }}>
-                Dashboard
+          {/* Navigation Links (Match reference image) */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.75rem' }}>
+            <Link href="/dashboard" style={{ 
+              textDecoration: 'none', fontSize: '0.9rem', fontWeight: 500, color: '#fff', 
+              position: 'relative', padding: '0.5rem 0'
+            }}>
+              Dashboard
+              <span style={{ 
+                position: 'absolute', bottom: 0, left: 0, right: 0, height: '2px', 
+                background: 'var(--accent-1)', boxShadow: '0 0 10px var(--accent-1)' 
+              }} />
+            </Link>
+            {['Repositories', 'AI Insights', 'Teams', 'Settings'].map(link => (
+              <Link key={link} href="#" style={{ textDecoration: 'none', fontSize: '0.9rem', fontWeight: 500, color: 'var(--text-secondary)' }}>
+                {link}
               </Link>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={user.avatar_url}
-                  alt={user.login}
-                  style={{ width: 32, height: 32, borderRadius: '50%', border: '2px solid var(--accent-1)' }}
-                />
-                <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                  {user.login}
-                </span>
-              </div>
-              <button onClick={handleLogout} className="btn-secondary" style={{ padding: '0.45rem 1rem', fontSize: '0.85rem' }}>
+            ))}
+          </div>
+        </div>
+
+        {/* Right side icons & user */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', color: 'var(--text-secondary)' }}>
+             {/* Settings Icon */}
+             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33 1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82 1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+             {/* Notification Icon */}
+             <div style={{ position: 'relative' }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                <span style={{ position: 'absolute', top: -2, right: -2, width: 8, height: 8, borderRadius: '50%', background: 'var(--accent-3)', border: '2px solid var(--bg-base)' }} />
+             </div>
+          </div>
+
+          {loading ? (
+            <div className="skeleton" style={{ width: 36, height: 36, borderRadius: '50%' }} />
+          ) : user ? (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <button 
+                onClick={handleLogout} 
+                style={{ 
+                  background: 'none', border: 'none', color: 'var(--text-secondary)', 
+                  cursor: 'pointer', fontSize: '0.85rem' 
+                }}
+              >
                 Logout
               </button>
-            </>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={user.avatar_url}
+                alt={user.login}
+                style={{ width: 36, height: 36, borderRadius: '50%', border: '1px solid rgba(255,255,255,0.2)' }}
+              />
+            </div>
           ) : (
-            <a href={loginUrl()} className="btn-primary" id="nav-login-btn">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-              </svg>
-              Login with GitHub
+            <a href={loginUrl()} className="btn-primary" style={{ padding: '0.5rem 1.25rem', fontSize: '0.85rem' }}>
+              Login
             </a>
           )}
         </div>
